@@ -2,13 +2,17 @@ const express = require("express");
 const path = require('path');
 const app = express();
 const convert = require("./lib/convert");
+const apiBCB = require('./lib/apiBCB');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    res.render('home');
+app.get('/', async (req, res) => {
+    const cotation = await apiBCB.getCotation();
+    res.render('home', {
+        cotation
+    });
 })
 app.get('/cotacao', (req, res) => {
     const { cotation, amount } = req.query;
