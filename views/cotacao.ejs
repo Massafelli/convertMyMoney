@@ -1,0 +1,10 @@
+<%- include('header')%>
+    <div class="result">
+        <% if(err) {%>
+            <%= err%>
+                <%}else{%>
+
+                    <%=amount%> dolars on cotation <%= cotation %> are equal: <%= convertion%> Reais
+                                <%}%>
+    </div>
+    <%- include('footer')%>
